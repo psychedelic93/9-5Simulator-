@@ -6,16 +6,9 @@ using System.Threading.Tasks;
 
 namespace _9_5Simulator
 {
-    class Item
+    class Enemy
     {
         public string Name { get; set; }
-        public int Strength { get; set; }
-
-        public Item(string name, int strength)
-        {
-            this.Name = name;
-            this.Strength = strength;
-        }
-
+        public string Health { get; set; }
     }
 }
