@@ -10,12 +10,12 @@ namespace _9_5Simulator
     {
         static void Main(string[] args)
         {
-            Player Davyd = new Player("Davyd", 100, 0, 100);
-            Work job = new Work(0, "", false);
-            if(job.JobTitle == "")
-            {
-                job.unemployed(Davyd);
-            }
+            Player player = new Player("Alex", 100, 0, 100);
+            Enemy enemy = new Enemy("Wasteman", 1, 1000, 10);
+            Event.Shop(player);
+            Event.CombatLoop(player, enemy);
+            Console.ReadKey();
+            
         }
     }
 }
