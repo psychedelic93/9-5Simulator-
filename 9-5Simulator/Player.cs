@@ -10,6 +10,7 @@ namespace _9_5Simulator
     {
         public string Name { get; set; }
         public int Level { get; set; }
+        public int Damage { get; set; }
         public int Health { get; set; }
         public int Depression { get; set; }
         public int Salary { get; set; }
@@ -21,6 +22,7 @@ namespace _9_5Simulator
         {
             this.Name = name;
             this.Level = 1;
+            this.Damage = 25 * Level;
             this.Health = health;
             this.Depression = depression;
             this.Salary = 10;
@@ -31,15 +33,38 @@ namespace _9_5Simulator
 
         public void UseItemSelf(Item Item)
         {
-            switch (Item.Name)
+            bool present = false;
+            foreach(Item itemInv in Inventory)
             {
-                case "Health":
-                    Health = Health + Item.Strength;
+                if (itemInv.Name == Item.Name)
+                {
+                    present = true;
                     break;
-                case "Antidepressant":
-                    Depression = Depression - Item.Strength;
-                    break;
+                }
+                else
+                {
+                    present = false;
+                }
             }
+            if(present == true)
+            {
+                switch (Item.Name)
+                {
+                    case "Health":
+                        Health = Health + Item.Strength;
+                        Inventory.Remove(Item);
+                        break;
+                    case "Antidepressant":
+                        Depression = Depression - Item.Strength;
+                        Inventory.Remove(Item);
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("You do not have this item");
+            }
+            
 
         }
 
