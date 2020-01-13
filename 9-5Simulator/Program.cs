@@ -10,6 +10,10 @@ namespace _9_5Simulator
     {
         static void Main(string[] args)
         {
+            Player player = new Player("Alex", 100, 0, 0);
+            Enemy enemy = new Enemy("Wasteman", 1, 100, 10);
+            Event.CombatLoop(player, enemy);
+            Console.ReadKey();
         }
     }
 }
