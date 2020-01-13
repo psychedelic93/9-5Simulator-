@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace _9_5Simulator
 {
 	class Work
@@ -13,65 +14,65 @@ namespace _9_5Simulator
 
         public string JobTitle { get; set; }
 
-        public boolean IsLate { get; set; }
+        public bool IsLate { get; set; }
 
-        public WorkDay(int salary, string jobTitle, Boolean isLate)
+        public Work(int salary, string jobTitle, Boolean isLate)
 		{
             this.Salary = salary;
             this.JobTitle = jobTitle;
             this.IsLate = IsLate;
 		}
 
-		public void WorkStart(Work job, player person)
+		public void WorkStart(Work job, Player user)
         {
-			switch (job.jobTitle)
+			switch (job.JobTitle)
             {
                 case "Uber":
-                    uberJob(job, person);
+                    uberJob(job, user);
                     break;
                 case "Monop":
-                    monopJob(job, person);
+                    monopJob(job, user);
                     break;
                 case "Metro":
-                    metroJob(job, person);
+                    metroJob(job, user);
                     break;
                 default:
-                    unemployed(person);
+                    unemployed(user);
                     break;
             }
         }
 
-        public void uberJob(Work uber, player person)
+        public void uberJob(Work uber, Player person)
         {
-            person.money = person.money + uber.Salary
+            person.Money = person.Money + uber.Salary;
         }
 
-        public void monopJob(Work Monop, player person)
-        {
-
-        }
-
-        public void metroJob(Work metro, player person)
+        public void monopJob(Work Monop, Player person)
         {
 
         }
 
-        public void unemployed(player person)
+        public void metroJob(Work metro, Player person)
+        {
+
+        }
+
+        public void unemployed(Player person)
         {
             int hours = 8;
             while (hours > 0)
             {
 
-                Boolean correctResponse = false;
+                bool correctResponse = false;
                 string answer = "";
-                Console.WriteLine("Another day at home.... Only {0} hours left", hours.ToString);
+                Console.WriteLine("Another day at home.... Only {0} hours left", hours.ToString());
                 System.Threading.Thread.Sleep(2000);
                 person.Depression = person.Depression + 10;
-                while(correctResponse = false)
+                while(correctResponse == false)
                 {
                     Console.WriteLine("You can either {0}A) Find New Job {0}B) Smoke weed and chill {0}C) Meet friends", Environment.NewLine);
-                    answer = Console.ReadLine;
-                    if(answer.ToUpper =! "A" && answer.ToUpper =! "B" && answer.ToUpper =! "C")
+                    answer = Console.ReadLine();
+                    if(answer.ToUpper() != "A" && answer.ToUpper() != "B" && answer.ToUpper() != "C")
                     {
                         Console.WriteLine("Please type the corresponding letter e.g 'A'");
                         correctResponse = false;
@@ -81,30 +82,35 @@ namespace _9_5Simulator
                         correctResponse = true;
                     }
                 }
-                switch(answer.ToUpper)
+                switch(answer.ToUpper())
                 {
                     case ("A"):
+                        Console.WriteLine("You have decided to find a job");
                         jobOffer(person);
+                        break;
 
                     case ("B"):
                         smokeChill(person);
+                        break;
 
                     case ("C"):
                         meetFriends(person);
+                        break;
                 }
                 
                 
             }
         }
 
-        public void jobOffer(player person)
+        public Player jobOffer(Player person)
         {
             string answer = "";
-            while (correctResponse = false)
+            bool correctResponse = false;
+            while (correctResponse == false)
             {
                 Console.WriteLine("You can either {0}A) Work for Uber {0}B) Work For Monop {0}C) Work for Metro", Environment.NewLine);
-                answer = Console.ReadLine;
-                if (answer.ToUpper = !"A" && answer.ToUpper = !"B" && answer.ToUpper = !"C")
+                answer = Console.ReadLine();
+                if (answer.ToUpper() != "A" && answer.ToUpper() != "B" && answer.ToUpper() != "C")
                 {
                     Console.WriteLine("Please type the corresponding letter e.g 'A'");
                     correctResponse = false;
@@ -115,19 +121,26 @@ namespace _9_5Simulator
                 }
             }
 
-            int rnd = Random.next(500);
-            int choice = (rnd + person.Depression) - player.Health;
+            Random rnd = new Random();
+            int choice = (rnd.Next(500) + person.Depression) - person.Health;
             
             if (choice <= 250)
             {
-                switch (answer.ToUpper)
+                switch (answer.ToUpper())
                 {
-                    // Add function to fight interviewer, if you win yoyu get job
+                    // Add function to fight interviewer, if you win you get job
                     case ("A"):
+                        Console.WriteLine("When you arrive, you find that the interviewer is ready to fight!");
+                        Enemy UberInter = new Enemy("Terrence", 1, 100, 15);
+                        Event.CombatLoop(person, UberInter);
+                        if
+                        break;
 
                     case ("B"):
+                        break;
 
                     case ("C"):
+                        break;
 
                 }
             }
@@ -135,17 +148,17 @@ namespace _9_5Simulator
             {
                 Console.WriteLine("You were unsuccesful");
                 person.Depression = person.Depression - 10;
-                return person;
             }
-            
+
+            return person;
         }
 
-        public void smokeChill (player person)
+        public void smokeChill (Player person)
         {
 
         }
 
-        public void meetFriends (player person)
+        public void meetFriends (Player person)
         {
 
         }
